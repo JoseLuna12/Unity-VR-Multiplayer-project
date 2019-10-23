@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class uiRaycast : MonoBehaviour
 {
 
-    bool uiPlaySound;
+    bool uiPlayingSound;
     public AudioSource uiAudioSource;
     
     // Start is called before the first frame update
     void Start()
     {
 
-        uiPlaySound = false;
+        uiPlayingSound = false;
     }
 
     // Update is called once per frame
@@ -31,22 +31,26 @@ public class uiRaycast : MonoBehaviour
             }
         }
 
+        if (Input.GetMouseButton(0))
+        {
+            
+        }
 
     }
 
     public void interactableUi(GameObject Iui)
     {
-        uiPlaySound = true;
+        uiPlayingSound = false;
 
-        if (!uiPlaySound || !uiAudioSource.isPlaying)
+        if (!uiAudioSource.isPlaying && !uiPlayingSound)
         {
             uiAudioSource.Play();
-            uiPlaySound = false;
+            uiPlayingSound = true;
         }
         else
         {
-            uiAudioSource.Stop();
-            uiPlaySound = false;
+            uiPlayingSound = false;
+            uiAudioSource.Stop();            
         }
 
         GameObject parent;
@@ -61,7 +65,7 @@ public class uiRaycast : MonoBehaviour
 
 
 
-        if(Iui.transform.name == "Game1")
+        if(Iui.transform.name == "CardWhite")
         {
             GameObject GameParent;
             Transform gameChildren;
@@ -70,10 +74,10 @@ public class uiRaycast : MonoBehaviour
             childrenCount = gameObject.transform.childCount;
             gameChildren = GameParent.transform.GetChild(childrenCount);
             gameChildren.transform.gameObject.SetActive(true);
-            SceneManager.LoadScene("BirdLevel");
+            SceneManager.LoadScene("birdLevel");
         }
 
-        uiPlaySound = false;
+       
 
     }
     

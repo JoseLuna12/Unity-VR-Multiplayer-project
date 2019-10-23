@@ -15,6 +15,7 @@ public class uiParentController : MonoBehaviour
 
 
     public bool debugChild;
+    public bool debugUI;
 
     void Start()
     {
@@ -26,6 +27,18 @@ public class uiParentController : MonoBehaviour
 
         if (debugChild)
             getChildsObject(GrandParent);
+
+        debugUI = false;
+    }
+
+    private void Update()
+    {
+        if (debugUI)
+        {            
+            //OpenUi(debugUI);
+            debugUI = !debugUI;
+        }
+
     }
 
     //here i save the child objects of the UI canvas to an array
@@ -49,12 +62,57 @@ public class uiParentController : MonoBehaviour
         for (int h = 0; h < gameCardCount; h++)
             allGames[h] = Childrens[0].transform.GetChild(h);
 
+        //Deactivate game cards bc they redirect to the game scene even when they are not displaying
+        //Childrens[0].gameObject.SetActive(false); no longer needed, actually....
+        Childrens[0].gameObject.SetActive(true);
+
         debugChild = false;
     }
 
     public void OpenUi(bool Is)
     {
+
         uiAnimator.SetBool("isOpen", Is);
+        StartCoroutine(waitForAnimationUi(Is));
+        
+    }
+
+    public IEnumerator waitForAnimationUi(bool an)
+    {
+        yield return new WaitForSeconds(1.5f);
+        //Childrens[0].gameObject.SetActive(an);
+
+        Transform[] gameChildren = new Transform[Childrens[0].childCount];
+
+        for(int i = 0; i < Childrens[0].childCount; i++)
+        {
+            gameChildren[i] = Childrens[0].GetChild(i);
+        }
+
+        
+
+        //Childrens[0].gameObject.GetComponent<Collider>().enabled=an;
+        if (an)
+        {
+            for (int h = 0; h < Childrens[0].childCount; h++)
+            {
+                gameChildren[h].gameObject.GetComponent<Collider>().enabled = true;
+            }
+            
+        }
+        else
+        {
+            for (int h = 0; h < Childrens[0].childCount; h++)
+            {
+                gameChildren[h].gameObject.GetComponent<Collider>().enabled = false;
+            }
+            
+        }
+    }
+
+    public void turnColliderGames()
+    {
+
     }
 
     public void sortGames(string gameName, bool active)
