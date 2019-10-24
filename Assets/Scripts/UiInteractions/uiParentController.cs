@@ -64,7 +64,7 @@ public class uiParentController : MonoBehaviour
 
         //Deactivate game cards bc they redirect to the game scene even when they are not displaying
         //Childrens[0].gameObject.SetActive(false); no longer needed, actually....
-        Childrens[0].gameObject.SetActive(true);
+        //Childrens[0].gameObject.SetActive(true);
 
         debugChild = false;
     }
@@ -96,7 +96,7 @@ public class uiParentController : MonoBehaviour
         {
             for (int h = 0; h < Childrens[0].childCount; h++)
             {
-                gameChildren[h].gameObject.GetComponent<Collider>().enabled = true;
+                //gameChildren[h].gameObject.GetComponent<Collider>().enabled = true;
             }
             
         }
@@ -104,7 +104,7 @@ public class uiParentController : MonoBehaviour
         {
             for (int h = 0; h < Childrens[0].childCount; h++)
             {
-                gameChildren[h].gameObject.GetComponent<Collider>().enabled = false;
+                //gameChildren[h].gameObject.GetComponent<Collider>().enabled = false;
             }
             
         }
@@ -126,7 +126,7 @@ public class uiParentController : MonoBehaviour
                 int children = onlyGame.transform.childCount;
                 gameOnlyComponents = onlyGame.transform.GetChild(children);
 
-                gameOnlyComponents.gameObject.SetActive(active);
+                //gameOnlyComponents.gameObject.SetActive(active);
             }
         }
     }

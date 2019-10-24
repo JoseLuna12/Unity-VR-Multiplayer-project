@@ -25,7 +25,7 @@ public class uiRaycast : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
 
-            if (hit.collider.gameObject.tag == "ui" && Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) && hit.collider.gameObject.tag == "ui" || Input.GetMouseButtonDown(0))
             {
                 interactableUi(hit.collider.gameObject);
             }
@@ -77,7 +77,18 @@ public class uiRaycast : MonoBehaviour
             SceneManager.LoadScene("birdLevel");
         }
 
-       
+        if (Iui.transform.name == "menu")
+        {
+            GameObject GameParent;
+            Transform gameChildren;
+            int childrenCount;
+            GameParent = Iui.transform.parent.gameObject;
+            childrenCount = gameObject.transform.childCount;
+            gameChildren = GameParent.transform.GetChild(childrenCount);
+            gameChildren.transform.gameObject.SetActive(true);
+            SceneManager.LoadScene("Index");
+        }
+
 
     }
     

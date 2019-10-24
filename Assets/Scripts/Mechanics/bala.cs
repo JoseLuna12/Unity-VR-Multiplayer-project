@@ -19,6 +19,5 @@ public class bala : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         CubeCut.Cut(collision.transform, transform.position);
-        //Destroy(this, 5);
     }
 }
