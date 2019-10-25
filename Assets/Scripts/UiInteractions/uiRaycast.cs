@@ -25,9 +25,10 @@ public class uiRaycast : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
 
-            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) && hit.collider.gameObject.tag == "ui" || Input.GetMouseButtonDown(0))
+            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || Input.GetMouseButtonDown(0))
             {
-                interactableUi(hit.collider.gameObject);
+                if (hit.collider.gameObject.tag == "ui")
+                    interactableUi(hit.collider.gameObject);
             }
         }
 
