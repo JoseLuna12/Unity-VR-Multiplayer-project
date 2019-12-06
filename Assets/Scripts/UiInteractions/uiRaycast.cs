@@ -8,6 +8,7 @@ public class uiRaycast : MonoBehaviour
 
     bool uiPlayingSound;
     public AudioSource uiAudioSource;
+    public GameObject loadSceneManager;
     
     // Start is called before the first frame update
     void Start()
@@ -75,7 +76,9 @@ public class uiRaycast : MonoBehaviour
             childrenCount = gameObject.transform.childCount;
             gameChildren = GameParent.transform.GetChild(childrenCount);
             gameChildren.transform.gameObject.SetActive(true);
-            SceneManager.LoadScene("birdLevel");
+            //SceneManager.LoadScene("birdLevel");
+            //loadSceneManager.transform.GetComponent<joinGameRoom1>();
+            loadSceneManager.transform.gameObject.GetComponent<quickStartLobby>().QuickStart();
         }
 
         if (Iui.transform.name == "menu")

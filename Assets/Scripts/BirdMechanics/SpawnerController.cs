@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using Photon.Chat;
 
 public class SpawnerController : MonoBehaviour
 {
@@ -44,6 +47,7 @@ public class SpawnerController : MonoBehaviour
         }
     }
 
+    [PunRPC]
     public IEnumerator selectInstansiator(float velSpawn)
     {
         
