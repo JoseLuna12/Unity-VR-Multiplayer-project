@@ -78,7 +78,21 @@ public class uiRaycast : MonoBehaviour
             gameChildren.transform.gameObject.SetActive(true);
             //SceneManager.LoadScene("birdLevel");
             //loadSceneManager.transform.GetComponent<joinGameRoom1>();
-            loadSceneManager.transform.gameObject.GetComponent<quickStartLobby>().QuickStart();
+            loadSceneManager.transform.gameObject.GetComponent<quickStartLobby>().joinGame1Start();
+        }
+
+        if (Iui.transform.name == "game2")
+        {
+            GameObject GameParent;
+            Transform gameChildren;
+            int childrenCount;
+            GameParent = Iui.transform.parent.gameObject;
+            childrenCount = gameObject.transform.childCount;
+            gameChildren = GameParent.transform.GetChild(childrenCount);
+            gameChildren.transform.gameObject.SetActive(true);
+            //SceneManager.LoadScene("birdLevel");
+            //loadSceneManager.transform.GetComponent<joinGameRoom1>();
+            loadSceneManager.transform.gameObject.GetComponent<quickStartLobby>().joinGame2Start();
         }
 
         if (Iui.transform.name == "menu")

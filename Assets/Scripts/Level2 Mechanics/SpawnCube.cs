@@ -1,6 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Photon.Pun;
+using System.IO;
 using UnityEngine;
+using Photon.Realtime;
+
 
 public class SpawnCube : MonoBehaviour
 {
@@ -10,9 +12,11 @@ public class SpawnCube : MonoBehaviour
 
     public bool debugTry;
 
+    PhotonView view;
     void Start()
     {
         debugTry = false;
+        view = this.transform.GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -20,15 +24,22 @@ public class SpawnCube : MonoBehaviour
     {
         if (debugTry)
         {
-            instansiateCube();
+            //instansiateCube();
+
+            view.RPC("instansiateCube", RpcTarget.All);
             debugTry = !debugTry;
         }
     }
 
+
+
+    [PunRPC]
     public void instansiateCube()
     {
         int i = Random.Range(0, 4);
-        Instantiate(cubos[i], SpawnPoint.transform.position, Quaternion.identity);
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPlayerPrefabs", "Level2", cubos[i].name), SpawnPoint.transform.position, Quaternion.identity, 0);
+        //Instantiate(cubos[i], SpawnPoint.transform.position, Quaternion.identity);
+        Debug.Log("instansiando pieza");
     }
 
 }

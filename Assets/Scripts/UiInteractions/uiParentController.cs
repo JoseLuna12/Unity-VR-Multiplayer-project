@@ -29,6 +29,7 @@ public class uiParentController : MonoBehaviour
             getChildsObject(GrandParent);
 
         debugUI = false;
+        uiAnimator.SetBool("isOpen", true);
     }
 
     private void Update()

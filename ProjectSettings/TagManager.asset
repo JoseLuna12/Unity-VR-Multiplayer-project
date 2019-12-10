@@ -8,6 +8,9 @@ TagManager:
   - espada
   - pajaro
   - ui
+  - movible
+  - spawner
+  - tetris
   layers:
   - Default
   - TransparentFX

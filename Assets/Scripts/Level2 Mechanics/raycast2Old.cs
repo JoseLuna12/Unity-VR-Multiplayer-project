@@ -1,28 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
 
-public class RaycastLevel2 : MonoBehaviour
+public class raycast2Old : MonoBehaviour
 {
-    public GameObject cannon;
-    public bool active;
-    public GameObject character;
-    int val;
-    PhotonView view;
-    PhotonView view2;
-
-    public Transform puntero;
-
-    bool graved;
-    GameObject ficha;
+    // Start is called before the first frame update
     void Start()
     {
-        graved = false;
-        val = 1;
-        active = true;
-        view = GetComponent<PhotonView>();
+        
     }
 
     // Update is called once per frame
@@ -36,9 +21,9 @@ public class RaycastLevel2 : MonoBehaviour
                 if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || Input.GetButtonDown("Fire1"))
                 {
                     //shootFunction();
-                    
+
                     grabFunction();
-                    
+
                     //instansiateMechanic();
                     //view.RPC("grabFunction" ,RpcTarget.All, true);
                     //view.RPC("instansiateMechanic", RpcTarget.All);
@@ -50,7 +35,7 @@ public class RaycastLevel2 : MonoBehaviour
                     //grabFunction(false);
                     //view.RPC("grabFunction", RpcTarget.All, false);
                 }
-                
+
                 if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) || Input.GetKeyDown("space"))
                 {
                     character.transform.position += new Vector3(0, val, 0);
@@ -66,10 +51,8 @@ public class RaycastLevel2 : MonoBehaviour
                 }
             }
         }
-        
     }
 
-   //[PunRPC]
     private void grabFunction()
     {
         //Debug.Log("shoot");
@@ -80,8 +63,9 @@ public class RaycastLevel2 : MonoBehaviour
             if (hit.transform.CompareTag("movible"))
             {
                 graved = !graved;
-               bool grab = graved;
-                if (hit.transform.gameObject.GetComponent<objectMechanics>().recogible) { 
+                bool grab = graved;
+                if (hit.transform.gameObject.GetComponent<objectMechanics>().recogible)
+                {
                     if (grab)
                     {
 
@@ -98,7 +82,7 @@ public class RaycastLevel2 : MonoBehaviour
                         // hit.transform.gameObject.GetComponent<Rigidbody>().useGravity = false;
                         // hit.transform.gameObject.GetComponent<objectMechanics>().suelto = false;
                         //hit.transform.gameObject.GetComponent<objectMechanics>().grabfunc();
-                        
+
                     }
                     else if (!grab)
                     {
@@ -118,14 +102,14 @@ public class RaycastLevel2 : MonoBehaviour
                         //   hit.transform.gameObject.GetComponent<Rigidbody>().useGravity = true;
                         //hit.transform.gameObject.GetComponent<objectMechanics>().nograbFunc();
                         //hit.transform.SetParent(null);
-                    //    hit.transform.gameObject.GetComponent<objectMechanics>().resetPositionRotation();
-                     //   hit.transform.gameObject.GetComponent<objectMechanics>().suelto = true;
-                       
+                        //    hit.transform.gameObject.GetComponent<objectMechanics>().resetPositionRotation();
+                        //   hit.transform.gameObject.GetComponent<objectMechanics>().suelto = true;
+
                     }
                 }
             }
         }
-        
+
     }
 
     //[PunRPC]
